@@ -55,6 +55,11 @@ main {
     padding-top: 3em;
 }
 
+#sectionContainer {
+    overflow-y: scroll;
+    max-height: 100vh;
+}
+
 section {
     position: relative;
     min-height: 80vh;
