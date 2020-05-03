@@ -101,29 +101,17 @@ function makeActive() {
         var cBottom = cTop + container.clientHeight;
         const containerRect = container.getBoundingClientRect();
 
-        var px = window.getComputedStyle(container, null).getPropertyValue('font-size');
-
         const section = document.getElementById(`${sectionInfo.Id}`);
-        var offsetparent = section.offsetParent;
-
         const sectionRect = section.getBoundingClientRect();
         var eTop = section.offsetTop;
         var eBottom = eTop + section.clientHeight;
-        //console.log(`section ${sectionInfo.data} c.top:${containerRect.top},c.bottom:${containerRect.bottom} s.top:${sectionRect.top},s.bottom:${sectionRect.bottom},s.height:${sectionRect.height}`);
-        //console.log(`s.height - s.top = ${sectionRect.height - sectionRect.top}`)
 
-        const windowHeight = (window.innerHeight || document.documentElement.clientHeight);
-        //const verticalInView = (sectionRect.top <= windowHeight) && ((sectionRect.top + sectionRect.height) >=0);
-        console.log(`section ${sectionInfo.Id} cTop:${cTop},cBottom:${cBottom} eTop:${eTop},eBottom:${eBottom}`);
-        //const verticalInView = ((eTop < cTop) && (eBottom > cTop)) ||
-        //((eBottom > cBottom) && (eTop < cBottom))
         const verticalInView = (eBottom <= cBottom);
         if (verticalInView) {
-            console.log(`section ${sectionInfo.Id} is ACTIVE`);
             activeSection = sectionInfo.Id;
         }
     });
-    console.log(`section ${activeSection} is ACTIVE`);
+
     if (activeSection !== null) {
         Sections.forEach(sectionInfo => {
             if (sectionInfo.Id == activeSection) {
@@ -132,6 +120,15 @@ function makeActive() {
 
                     const section = document.getElementById(`${sectionInfo.Id}`);
                     section.classList.add("your-active-class");
+
+                    //Hide the header when the first section is active
+                    const header = document.getElementsByClassName('page__header');
+                    if (sectionInfo.data === 'Section 1') {
+                        header[0].style.display = 'none';
+                    }
+                    else {
+                        header[0].style.display = 'block';
+                    }
                 }
             }
             else {
@@ -141,7 +138,6 @@ function makeActive() {
                 }
 
                 sectionInfo.active = false;
-
             }
         });
     }

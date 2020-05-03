@@ -96,8 +96,8 @@ section {
 
 /* Header Styles */
 .page__header {
+    display: none;
     background: #fff;
-    /*background: #cc1;*/
     position: fixed;
     top: 0;
     width: 100%;
