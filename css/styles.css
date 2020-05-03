@@ -59,6 +59,7 @@ main {
     position: relative;
     overflow-y: scroll;
     max-height: 100vh;
+    scroll-behavior: smooth;
 }
 
 section {

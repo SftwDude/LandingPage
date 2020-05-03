@@ -130,8 +130,7 @@ function makeActive() {
                         header[0].style.display = 'block';
                         //Highlight the active section nav menu item
                         const menuItem = document.getElementsByName(`${sectionInfo.Id}`);
-                        if (menuItem !== null)
-                        {
+                        if (menuItem !== null) {
                             menuItem[0].style.border = "thick solid #CCC";
                         }
                     }
@@ -145,8 +144,7 @@ function makeActive() {
 
                 //Unhighlight non-active nav menu item
                 const menuItem = document.getElementsByName(`${sectionInfo.Id}`);
-                if (menuItem !== null)
-                {
+                if (menuItem !== null) {
                     menuItem[0].style.border = "none";
                 }
 
@@ -154,12 +152,17 @@ function makeActive() {
             }
         });
     }
-
 }
 
 
 // Scroll to anchor ID using scrollTO event
-
+function scrollToSection(event) {
+    const name = event.currentTarget.name;
+    const section = document.getElementById(name);
+    const topPos = section.offsetTop;
+    
+    section.parentElement.scrollTop = topPos;
+}
 
 /**
  * End Main Functions
@@ -176,8 +179,10 @@ function addNavItem(ul, section) {
     li.style.border = 'none';
     //li.appendChild(document.createTextNode(section.data));
     const link = document.createElement('a');
-    link.setAttribute('href', `#${section.Id}`);
+    //link.setAttribute('href', `#${section.Id}`);
+    link.setAttribute('href', '#');
     link.setAttribute('name', section.Id);
+    link.onclick = scrollToSection;
     link.innerText = section.data;
     li.appendChild(link);
     ul.appendChild(li);
