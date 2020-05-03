@@ -128,6 +128,12 @@ function makeActive() {
                     }
                     else {
                         header[0].style.display = 'block';
+                        //Highlight the active section nav menu item
+                        const menuItem = document.getElementsByName(`${sectionInfo.Id}`);
+                        if (menuItem !== null)
+                        {
+                            menuItem[0].style.border = "thick solid #CCC";
+                        }
                     }
                 }
             }
@@ -135,6 +141,13 @@ function makeActive() {
                 const section = document.getElementById(`${sectionInfo.Id}`);
                 if (sectionInfo.active) {
                     section.classList.remove("your-active-class");
+                }
+
+                //Unhighlight non-active nav menu item
+                const menuItem = document.getElementsByName(`${sectionInfo.Id}`);
+                if (menuItem !== null)
+                {
+                    menuItem[0].style.border = "none";
                 }
 
                 sectionInfo.active = false;
@@ -159,6 +172,8 @@ function addNavItem(ul, section) {
     const li = document.createElement("li");
     li.setAttribute('class', 'menu__link');
     li.setAttribute('data-link', section.Id);
+    li.setAttribute('data-link', section.Id);
+    li.style.border = 'none';
     //li.appendChild(document.createTextNode(section.data));
     const link = document.createElement('a');
     link.setAttribute('href', `#${section.Id}`);
