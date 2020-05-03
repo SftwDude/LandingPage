@@ -156,13 +156,7 @@ function makeActive() {
 
 
 // Scroll to anchor ID using scrollTO event
-function scrollToSection(event) {
-    const name = event.currentTarget.name;
-    const section = document.getElementById(name);
-    const topPos = section.offsetTop;
-    
-    section.parentElement.scrollTop = topPos;
-}
+
 
 /**
  * End Main Functions
@@ -189,5 +183,12 @@ function addNavItem(ul, section) {
 
 }
 // Scroll to section on link click
+function scrollToSection(event) {
+    const name = event.currentTarget.name;
+    const section = document.getElementById(name);
+    const topPos = section.offsetTop;
+    
+    section.parentElement.scrollTop = topPos;
+}
 
 // Set sections as active
